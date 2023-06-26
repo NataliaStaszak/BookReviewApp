@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
+    <changeSet id="0001-testdata-1" author="javastart">
+        <insert tableName="book">
+            <column name="name" value="Wojna i pokój"/>
+            <column name="description" value="testowy wojny i pokoju"/>
+        </insert>
+        <insert tableName="book">
+            <column name="name" value="Wojna i pokój"/>
+            <column name="description" value="testowy wojny i pokoju"/>
+        </insert>
+        <insert tableName="book">
+            <column name="name" value="Zbrodnia i Kara"/>
+            <column name="description" value="testowy opis Zbrodni i kary"/>
+        </insert>
+        <insert tableName="book">
+            <column name="name" value="Mistrz i Małgorzata"/>
+            <column name="description" value="testowy opis Mim"/>
+        </insert>
+        <insert tableName="book">
+            <column name="name" value="Dama z Pieskiem"/>
+            <column name="description" value="testowy opis Damy z Pieskiem"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>
