@@ -6,4 +6,6 @@
         https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
     <include file="0001_create_table_book.xml" relativeToChangelogFile="true" />
     <include file="testdata/0001_book.xml" relativeToChangelogFile="true" context="dev" />
+    <include file="0001_create_table_author.xml" relativeToChangelogFile="true" />
+    <include file="testdata/0001_author.xml" relativeToChangelogFile="true" context="dev" />
 </databaseChangeLog>

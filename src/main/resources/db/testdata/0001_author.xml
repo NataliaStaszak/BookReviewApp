@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
+    <changeSet id="0001-testdata-1" author="Natalia">
+        <insert tableName="author">
+            <column name="name" value="Lew"/>
+            <column name="surname" value="Tolstoj"/>
+        </insert>
+        <insert tableName="author">
+            <column name="name" value="Fiodor"/>
+            <column name="surname" value="Dostojewski"/>
+        </insert>
+        <insert tableName="author">
+            <column name="name" value="Michail"/>
+            <column name="surname" value="Bulhakow"/>
+        </insert>
+        <insert tableName="author">
+            <column name="name" value="Antoni"/>
+            <column name="surname" value="Czechow"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

@@ -1,9 +1,6 @@
 package com.example.book;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Book {
@@ -12,13 +9,17 @@ public class Book {
     private long id;
     private String name;
     private String description;
+    @ManyToOne
+    @JoinColumn(name = "author_id")
+    private Author author;
 
     public Book() {
     }
 
-    public Book( String name, String description) {
+    public Book( String name, String description,Author author) {
         this.name = name;
         this.description = description;
+        this.author=author;
     }
 
 
@@ -44,6 +45,14 @@ public class Book {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
     }
 
     @Override
