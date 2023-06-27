@@ -1,5 +1,7 @@
-package com.example.book;
+package com.example.book.author;
 
+import com.example.book.book.Book;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -9,12 +11,13 @@ import java.util.List;
 public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private String name;
     private String surname;
-
-    @OneToMany(cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
+    @OneToMany(mappedBy = "author")
+    @JsonIgnore
     private List<Book> books = new ArrayList<>();
+
     public Author(){}
 
     public Author(String name, String surname) {
@@ -45,6 +48,7 @@ public class Author {
     public void setSurname(String surname) {
         this.surname = surname;
     }
+
     public List<Book> getBooks() {
         return books;
     }

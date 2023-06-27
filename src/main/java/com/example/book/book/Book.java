@@ -1,18 +1,26 @@
-package com.example.book;
+package com.example.book.book;
 
+import com.example.book.author.Author;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 @Entity
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private String name;
     private String description;
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "author_id")
+    @JsonIgnore
     private Author author;
 
+    @JsonProperty
+    String authorName(){
+        return author.getName() + " " + author.getSurname();
+    }
     public Book() {
     }
 
