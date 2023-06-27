@@ -15,4 +15,12 @@ public class AuthorDtoMapper {
 
         return authorDto;
     }
+
+    Author map(AuthorSaveDto authorSaveDto){
+        Author author=new Author();
+        author.setName(authorSaveDto.getName());
+        author.setSurname(authorSaveDto.getSurname());
+
+        return author;
+    }
 }

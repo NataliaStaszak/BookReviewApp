@@ -2,10 +2,10 @@ package com.example.book.author;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -30,4 +30,15 @@ public class AuthorController {
         }
         return ResponseEntity.ok(authorService.getAuthorBooksByAuthorId(id));
     }
+    @PostMapping("/authors")
+    ResponseEntity<AuthorDto> saveAuthor(@RequestBody AuthorSaveDto authorSaveDto){
+        AuthorDto savedAuthor = authorService.saveAuthor(authorSaveDto);
+        URI savedAuthorUri = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(savedAuthor.getId())
+                .toUri();
+        return ResponseEntity.created(savedAuthorUri).body(savedAuthor);
+
+    }
+
 }

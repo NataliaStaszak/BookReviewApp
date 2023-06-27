@@ -1,17 +1,8 @@
 package com.example.book.author;
 
-public class AuthorDto {
-    private Long id;
+public class AuthorSaveDto {
     private String name;
     private String surname;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -28,5 +19,4 @@ public class AuthorDto {
     public void setSurname(String surname) {
         this.surname = surname;
     }
-
 }

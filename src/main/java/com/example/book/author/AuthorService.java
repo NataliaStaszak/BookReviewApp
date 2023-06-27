@@ -29,4 +29,10 @@ public class AuthorService {
                 .map(authorBooksDtoMapper::map)
                 .toList();
     }
+    AuthorDto saveAuthor(AuthorSaveDto authorSaveDto){
+        Author author = authorDtoMapper.map(authorSaveDto);
+        Author savedAuthor = authorRepository.save(author);
+
+        return authorDtoMapper.map(savedAuthor);
+    }
 }
