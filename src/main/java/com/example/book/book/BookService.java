@@ -25,5 +25,8 @@ public class BookService {
 
         return bookDtoMapper.map(savedBook);
     }
+    void deleteBook(Long id){
+        bookRepository.deleteById(id);
+    }
 
 }

@@ -35,4 +35,16 @@ public class AuthorService {
 
         return authorDtoMapper.map(savedAuthor);
     }
+    Optional<AuthorDto> replaceAuthor(Long authorId,AuthorSaveDto authorSaveDto){
+        if(!authorRepository.existsById(authorId)){
+            return Optional.empty();
+        }
+        Author authorToUpdate = authorDtoMapper.map(authorSaveDto);
+        authorToUpdate.setId(authorId);
+        Author updatedEntity = authorRepository.save(authorToUpdate);
+        return Optional.of(authorDtoMapper.map(updatedEntity));
+    }
+    void deleteAuthor(Long authorId){
+        authorRepository.deleteById(authorId);
+    }
 }

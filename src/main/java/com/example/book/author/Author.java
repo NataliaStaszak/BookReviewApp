@@ -2,6 +2,7 @@ package com.example.book.author;
 
 import com.example.book.book.Book;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.sun.jdi.TypeComponent;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ public class Author {
     private Long id;
     private String name;
     private String surname;
-    @OneToMany(mappedBy = "author")
+    @OneToMany(mappedBy = "author",cascade = CascadeType.REMOVE)
     @JsonIgnore
     private List<Book> books = new ArrayList<>();
 

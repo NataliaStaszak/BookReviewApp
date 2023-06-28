@@ -40,5 +40,16 @@ public class AuthorController {
         return ResponseEntity.created(savedAuthorUri).body(savedAuthor);
 
     }
+    @PutMapping("/authors/{id}")
+    ResponseEntity<?> replaceAuthor(@PathVariable Long id, @RequestBody AuthorSaveDto author) {
+        return authorService.replaceAuthor(id, author)
+                .map(c -> ResponseEntity.noContent().build())
+                .orElse(ResponseEntity.notFound().build());
+    }
+    @DeleteMapping("/authors/{id}")
+    ResponseEntity<?> deleteAuthor(@PathVariable Long id){
+        authorService.deleteAuthor(id);
+        return ResponseEntity.noContent().build();
+    }
 
 }

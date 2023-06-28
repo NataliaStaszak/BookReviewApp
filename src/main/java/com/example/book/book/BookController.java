@@ -39,6 +39,11 @@ public class BookController {
         return ResponseEntity.created(savedAuthorUri).body(savedBook);
 
     }
+    @DeleteMapping("/{id}")
+    ResponseEntity<?> deleteBook(@PathVariable Long id){
+        bookService.deleteBook(id);
+        return ResponseEntity.noContent().build();
+    }
 
 
 
