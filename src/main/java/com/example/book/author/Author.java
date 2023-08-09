@@ -4,6 +4,8 @@ import com.example.book.book.Book;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.jdi.TypeComponent;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +15,11 @@ public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotNull
+    @Size(min=2)
     private String name;
+    @NotNull
+    @Size(min=2)
     private String surname;
     @OneToMany(mappedBy = "author",cascade = CascadeType.REMOVE)
     @JsonIgnore

@@ -9,9 +9,15 @@
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
-            <column name="name" type="VARCHAR(100)"/>
-            <column name="description" type="VARCHAR(500)"/>
-            <column name="author_id" type="INT"/>
+            <column name="name" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(500)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="author_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
         <addForeignKeyConstraint baseTableName="book" baseColumnNames="author_id" constraintName="fk_books_author_id"
                                  referencedTableName="author" referencedColumnNames="id"/>

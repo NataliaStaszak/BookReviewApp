@@ -4,13 +4,21 @@ import com.example.book.author.Author;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import org.springframework.lang.NonNull;
+
+
 
 @Entity
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotNull
     private String name;
+    @NotNull(message = "Description cannot be empty (NULL)")
+    @Size(min = 3)
     private String description;
     @ManyToOne(optional = false)
     @JoinColumn(name = "author_id")

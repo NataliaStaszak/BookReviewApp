@@ -1,8 +1,15 @@
 package com.example.book.book;
 
+
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 public class BookDto {
     private Long id;
+    @NotNull
     private String name;
+    @NotNull
+    @Size(min = 3)
     private String description;
     private String authorName;
 

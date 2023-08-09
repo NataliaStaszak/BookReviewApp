@@ -1,12 +1,18 @@
 package com.example.book.author;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestController
 public class AuthorController {
@@ -30,8 +36,9 @@ public class AuthorController {
         }
         return ResponseEntity.ok(authorService.getAuthorBooksByAuthorId(id));
     }
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/authors")
-    ResponseEntity<AuthorDto> saveAuthor(@RequestBody AuthorSaveDto authorSaveDto){
+    ResponseEntity<AuthorDto> saveAuthor(@Valid @RequestBody AuthorSaveDto authorSaveDto){
         AuthorDto savedAuthor = authorService.saveAuthor(authorSaveDto);
         URI savedAuthorUri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
@@ -39,6 +46,13 @@ public class AuthorController {
                 .toUri();
         return ResponseEntity.created(savedAuthorUri).body(savedAuthor);
 
+    }
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    Map<String, String> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
+        return ex.getBindingResult().getFieldErrors()
+                .stream()
+                .collect(Collectors.toMap(FieldError::getField, FieldError::getDefaultMessage));
     }
     @PutMapping("/authors/{id}")
     ResponseEntity<?> replaceAuthor(@PathVariable Long id, @RequestBody AuthorSaveDto author) {
